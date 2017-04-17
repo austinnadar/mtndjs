@@ -1,0 +1,55 @@
+Group resource,Project Name,Task,Short Description,End date,Start date
+P05-Lapeyre-PPM-Delivery-Indec-Analytics,MNT - EDD,PRJTASK0010820,05 - Evolutions Techniques BODS-MSTR ,31-12-2017,02-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Analytics,MNT - EDD,PRJTASK0010735,01 - EDD - Maintenance Corrective,01-01-2018,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Analytics,MNT - EDD,PRJTASK0010738,04 - EDD - Support INDEC,02-01-2017,02-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Analytics,MNT - EDD,PRJTASK0010736,02 - EDD - Maintenance Evolutive,01-01-2018,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Analytics,PRJTEC -Management Pôle Delivery,PRJTASK0011074,Internal Studies and POC,29-12-2017,19-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Development,MNT - ADA,PRJTASK0010703,01 - ADA - Maintenance Corrective,15-01-2018,13-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Development,MNT - ADA,PRJTASK0010704,02 - ADA - Maintenance Evolutive,31-12-2017,13-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Development,MNT - DECLIC,PRJTASK0010731,02 - DECLIC - Maintenance Evolutive,01-01-2018,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Development,MNT - DECLIC,PRJTASK0010734,05 - DECLIC - Reporting,02-01-2017,02-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Development,MNT - DECLIC,PRJTASK0010733,04 - DECLIC - Testing,29-12-2017,02-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Development,MNT - GAnDHI,PRJTASK0010743,02 - GAnDHI - Maintenance Evolutive,31-12-2021,02-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Development,MNT - GAnDHI,PRJTASK0010742,01 - GAnDHI - Maintenance Corrective,31-12-2021,02-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Development,MNT - GAnDHI,PRJTASK0010744,03 - GAnDHI - Maintenance Support,31-12-2021,02-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Development,MNT - PAD,PRJTASK0010715,01 - PAD - Maintenance Corrective,01-01-2018,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Development,MNT - PAD,PRJTASK0010716,02 - PAD - Maintenance Evolutive,01-01-2018,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Development,MNT - SAV,PRJTASK0010796,01 - SAV - Maintenance Corrective,31-12-2021,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Development,MNT - SAV,PRJTASK0010797,02 - SAV - Maintenance Evolutive,31-12-2021,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Development,MNT - SITCOM,PRJTASK0010829,02 - SITCOM - Maintenance Evolutive,01-01-2019,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Development,MNT - SITCOM,PRJTASK0010828,01 - SITCOM - Maintenance Corrective,01-01-2019,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Development,MNT - Toolbox,PRJTASK0010844,01 - Toolbox - Maintenance Corrective,31-12-2021,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Development,PRJMET - Reconstruction SITCOM,PRJTASK0010835,05 - Reconstruction SITCOM - Recette Fonctionnelle,01-01-2019,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Development,PRJMET - Reconstruction SITCOM,PRJTASK0010834,04 - Reconstruction SITCOM - Réalisation / Qualification,01-01-2019,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Development,PRJTEC -Management Pôle Delivery,PRJTASK0011074,Internal Studies and POC,29-12-2017,19-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Integration,MNT - EAI,PRJTASK0010338,02 - EAI - Maintenance Evolutive,31-12-2017,02-01-2016
+P05-Lapeyre-PPM-Delivery-Indec-Integration,MNT - EAI,PRJTASK0010337,01 - EAI - Maintenance Corrective,31-12-2017,02-01-2016
+P05-Lapeyre-PPM-Delivery-Indec-Integration,MNT - SAS DECLIC,PRJTASK0010790,01 - SAS DECLIC - Maintenance Corrective,31-12-2021,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Integration,MNT - SAS DECLIC,PRJTASK0010791,02 - SAS DECLIC - Maintenance Evolutive,31-12-2021,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Integration,MNT - TALEND,PRJTASK0010819,03 - TALEND - Maintenance Support,31-12-2021,02-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Integration,MNT - TALEND,PRJTASK0010817,01 - TALEND - Maintenance Corrective,31-12-2021,02-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Integration,MNT - TALEND,PRJTASK0010818,02 - TALEND - Maintenance Evolutive,30-09-2022,02-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Integration,PRJTEC - EAI  - JMS MIGRATION,PRJTASK0010814,04 -  EAI  - JMS MIGRATION - Réalisation / Qualification,31-12-2021,02-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Integration,PRJTEC -Management Pôle Delivery,PRJTASK0011074,Internal Studies and POC,29-12-2017,19-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Management,PRJTEC -Management Pôle Delivery,PRJTASK0010840,Management & Meetings,19-01-2022,19-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Testing,MNT - ADA,PRJTASK0010703,01 - ADA - Maintenance Corrective,15-01-2018,13-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Testing,MNT - ADA,PRJTASK0010704,02 - ADA - Maintenance Evolutive,31-12-2017,13-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Testing,MNT - EAI,PRJTASK0010337,01 - EAI - Maintenance Corrective,31-12-2017,02-01-2016
+P05-Lapeyre-PPM-Delivery-Indec-Testing,MNT - EAI,PRJTASK0010338,02 - EAI - Maintenance Evolutive,01-10-2021,04-01-2016
+P05-Lapeyre-PPM-Delivery-Indec-Testing,MNT - GAnDHI,PRJTASK0010743,02 - GAnDHI - Maintenance Evolutive,31-12-2021,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Testing,MNT - GAnDHI,PRJTASK0010742,01 - GAnDHI - Maintenance Corrective,31-12-2021,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Testing,MNT - PAD,PRJTASK0010715,01 - PAD - Maintenance Corrective,01-01-2018,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Testing,MNT - PAD,PRJTASK0010716,02 - PAD - Maintenance Evolutive,01-01-2018,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Testing,MNT - SAS DECLIC,PRJTASK0010791,02 - SAS DECLIC - Maintenance Evolutive,31-12-2021,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Testing,MNT - SAS DECLIC,PRJTASK0010790,01 - SAS DECLIC - Maintenance Corrective,31-12-2021,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Testing,MNT - SAV,PRJTASK0010796,01 - SAV - Maintenance Corrective,31-12-2021,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Testing,MNT - SAV,PRJTASK0010797,02 - SAV - Maintenance Evolutive,31-12-2021,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Testing,MNT - SITCOM,PRJTASK0010828,01 - SITCOM - Maintenance Corrective,01-01-2019,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Testing,MNT - SITCOM,PRJTASK0010829,02 - SITCOM - Maintenance Evolutive,01-01-2019,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Testing,MNT - TALEND,PRJTASK0010818,02 - TALEND - Maintenance Evolutive,30-09-2022,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Testing,MNT - TALEND,PRJTASK0010817,01 - TALEND - Maintenance Corrective,31-12-2021,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Testing,MNT - Toolbox,PRJTASK0010844,01 - Toolbox - Maintenance Corrective,31-12-2021,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Testing,PRJMET - Reconstruction SITCOM,PRJTASK0010835,05 - Reconstruction SITCOM - Recette Fonctionnelle,01-01-2019,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Testing,PRJMET - Reconstruction SITCOM,PRJTASK0010834,04 - Reconstruction SITCOM - Réalisation / Qualification,01-01-2019,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Testing,PRJTEC - EAI  - JMS MIGRATION,PRJTASK0010814,04 -  EAI  - JMS MIGRATION - Réalisation / Qualification,31-12-2021,01-01-2017
+P05-Lapeyre-PPM-Delivery-Indec-Testing,PRJTEC -Management Pôle Delivery,PRJTASK0011074,Internal Studies and POC,29-12-2017,19-01-2017
