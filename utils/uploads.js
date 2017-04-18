@@ -1,9 +1,12 @@
-var connection = require('../config/config');    var multer = require('multer'),
+var connection = require('../config/config');
+var multer = require('multer');
 
-        storage = multer.diskStorage({ //multers disk storage settings
+var Upload = function() {
+
+    var storage = multer.diskStorage({ //multers disk storage settings
             destination: function(req, file, cb) {
                 cb(null, './uploads/');
-                console.log('helel');
+                // console.log('helel');
             },
             filename: function(req, file, cb) {
                 var datetimestamp = Date.now();

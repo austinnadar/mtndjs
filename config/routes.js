@@ -1,7 +1,7 @@
 var user = require('../model/user');
 var project = require('../model/project');
 var task = require('../model/task');
-var upload = require('../others/uploads');
+var upload = require('../utils/uploads');
 var timecard = require('../model/timecard');
 
 module.exports = {
@@ -70,18 +70,21 @@ module.exports = {
                 var Converter = require('csvtojson').Converter,
                     converter = new Converter({}),
                     jsons = [];
-                converter.fromFile(req.file.path)
-                    .on('json', function(jsonObj) {
-                        jsons.push(jsonObj)
-                    })
-                    .on('done', function() {
-                        //res.json(jsons);
 
-                        timecard.loadtimecard(jsons);
+                if (req.file) {
+                    converter.fromFile(req.file.path)
+                        .on('json', function(jsonObj) {
+                            jsons.push(jsonObj)
+                        })
+                        .on('done', function() {
+                            //res.json(jsons);
 
-                    });
-                // res.json(jsonData);
-                res.json({ error_code: 0, err_desc: null });
+                            timecard.loadtimecard(jsons);
+
+                        });
+                    // res.json(jsonData);
+                    res.json({ error_code: 0, err_desc: null });
+                }
             });
         });
 
