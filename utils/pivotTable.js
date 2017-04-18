@@ -1,4 +1,5 @@
-function pivotTable(){
+
+var pivotTable = function(){
         var task = [],
             user = [],
             week = [],
@@ -54,4 +55,6 @@ function pivotTable(){
                 return tsk;
             }
         }
-    }
+}
+
+module.exports = pivotTable;
