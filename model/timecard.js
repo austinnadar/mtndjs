@@ -1,7 +1,8 @@
 var connection = require('../config/config'),
     moment = require('moment'),
     EventEmitter = require('events').EventEmitter,
-    q = require('q');
+    q = require('q'),
+    pivot = require('../utils/pivotTable');
 
 
 var TimeCard = function() {
