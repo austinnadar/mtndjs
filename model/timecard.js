@@ -1,33 +1,13 @@
 var connection = require('../config/config'),
     moment = require('moment'),
     EventEmitter = require('events').EventEmitter,
-    q = require('q'),
-    pivot = require('../utils/pivotTable');
+    pivot = require('../utils/pivotTable'),
+    db = require('../utils/db');
 
 
 var TimeCard = function() {
 
-    var Emitter = new EventEmitter(),
-        getData = function(sql) {
-            var defer = q.defer();
-
-            connection.acquire(function(err, con) {
-                con.query(sql, function(err, result) {
-                    var data;
-                    if (err) {
-                        data = [];
-                        defer.reject('Error in query');
-                    } else {
-                        data = result;
-                        defer.resolve(data);
-                    }
-                    // Emitter.emit('BuildTask')
-                    // res.send(data);
-                });
-            });
-
-            return defer.promise;
-        };
+    var Emitter = new EventEmitter();
 
     Emitter.on('BuildTask', function(data) {
         // console.log(data);
@@ -114,15 +94,16 @@ var TimeCard = function() {
                 ' group by weekstartson, user, projecttask.prid ) ' +
                 ' as table1 join project on table1.prid = project.prid order by table1.weekstartson ) as table2 group by weekstartson,Project_Name ;'
 
-            getData(sql)
+            db.getData(sql)
+                .catch(function(err) {
+                    console.log(err);
+                })
                 .then(function(response) {
                     var d = {};
                     d['response'] = response,
                         d['res'] = res;
 
                     Emitter.emit('ProjectPivot', d);
-                }).catch(function(err) {
-                    console.log(err);
                 });
         },
         getTask: function(res) {
@@ -132,7 +113,7 @@ var TimeCard = function() {
                 ' from timecard  group by weekstartson, user, task_id) as table1 where length(task_id) > 0 ' +
                 ' and  usr in (select concat(lower(lastname),\' \', lower(firstname)) as user from user)  group by weekstartson,user;';
 
-            getData(sql)
+            db.getData(sql)
                 .then(function(response) {
                     var d = {};
                     d['response'] = response,

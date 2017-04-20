@@ -1,30 +1,33 @@
-var connection = require('../config/config');
+var connection = require('../config/config'),
+    db = require('../utils/db');
 
 var Task = function() {
 
-    this.get = function(params,res) {
+    this.get = function(params, res) {
         console.log(params);
-        var sql,para;
-        if(!params.date){
+        var sql, para;
+        if (!params.date) {
             sql = 'select *,date_format(weekstartson,"%d-%m-%Y") as weekstartson from timecard where user = ? ';
             para = params.name;
-        }else{
+        } else {
 
             sql = 'select *,date_format(weekstartson,"%d-%m-%Y") as weekstartson from timecard where user = ? and weekstartson = ?';
-            para = [params.name,params.date];
+            para = [params.name, params.date];
             console.log(para);
         }
-        connection.acquire(function(err, con) {
-            con.query(sql,para, function(err, result) {
-                con.release();
-                res.send(result);
-            });
-        });
+        db.sendData(sql, res);
+
+        // connection.acquire(function(err, con) {
+        //     con.query(sql,para, function(err, result) {
+        //         con.release();
+        //         res.send(result);
+        //     });
+        // });
     };
 
     this.create = function(task, res) {
         connection.acquire(function(err, con) {
-            
+
             // delete project.id;
             console.log(task);
             con.query('insert into task set ?', task, function(err, result) {
@@ -66,9 +69,9 @@ var Task = function() {
         });
     };
 
-    this.loadtask = function(json){
+    this.loadtask = function(json) {
 
-        
+
     }
 
 }

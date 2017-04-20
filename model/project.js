@@ -1,26 +1,28 @@
 var connection = require('../config/config'),
-    moment = require('moment');
-
+    moment = require('moment'),
+    db = require('../utils/db');
 var Project = function() {
 
     return {
         get: function(res) {
-            connection.acquire(function(err, con) {
-                con.query('select project.prid,project_name,task_id,projecttask.description,date_format(start_date,"%d-%m-%Y") as start_date,date_format(end_date,"%d-%m-%Y") as end_date from project inner join projecttask on project.prid = projecttask.prid ', function(err, result) {
-                    con.release();
-                    res.send(result);
-                });
-            });
+
+            var sql = 'select project.prid,project_name,task_id,projecttask.description,date_format(start_date,"%d-%m-%Y") as start_date' +
+                ',date_format(end_date,"%d-%m-%Y") as end_date from project inner join projecttask on project.prid = projecttask.prid ';
+
+            db.sendData(sql, null, res);
+
         },
         getNameCode: function(res) {
-            connection.acquire(function(err, con) {
-                con.query('select PRID,Project_Name from project', function(err, result) {
-                    con.release();
-                    res.send(result);
-                });
-            });
+            var sql = 'select PRID,Project_Name from project';
+
+            db.sendData(sql, null, res);
         },
         create: function(project, res) {
+
+            // sql = 'insert into project set ?';
+
+            // db.modifyData()
+
             connection.acquire(function(err, con) {
 
                 // delete project.id;
@@ -121,8 +123,8 @@ var Project = function() {
                                         'PRID': prid,
                                         'Task_ID': item["Task"],
                                         'Description': item["Short Description"],
-                                        "Start_Date": moment(item["Start date"],'DD-MM-YYYY').format('YYYY-MM-DD'),
-                                        "End_Date": moment(item["End date"],'DD-MM-YYYY').format('YYYY-MM-DD')
+                                        "Start_Date": moment(item["Start date"], 'DD-MM-YYYY').format('YYYY-MM-DD'),
+                                        "End_Date": moment(item["End date"], 'DD-MM-YYYY').format('YYYY-MM-DD')
                                     };
                                 console.log(rec);
 

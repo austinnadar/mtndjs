@@ -1,50 +1,78 @@
-var connection = require('../config/config');
-var jwt = require('jsonwebtoken');
+var connection = require('../config/config'),
+    jwt = require('jsonwebtoken'),
+    secretKey = 'lskdfjLKJOLIJLKSksdkasj39039023',
+    expressJwt = require('express-jwt'),
+    jwtCheck = expressJwt({ secret: secretKey }),
+    db = require('../utils/db');
 
-var secretKey = 'lskdfjLKJOLIJLKSksdkasj39039023';
-var expressJwt = require('express-jwt');
-var jwtCheck = expressJwt({ secret: secretKey });
 var User = function() {
 
     this.verifyUser = function(res, userName) {
 
         if (userName)
-            return connection.acquire(function(err, con) {
-                con.query('select * from user where SGID = ?', userName, function(err, result) {
-                    // console.log(result);
-                    con.release();
-                    if (err) {
-                        console.log(err);
-                        res.status(404).send('Unexpected error');
+            var sql = 'select * from user'
+                // db.getData(sql, userName)
+                //     .then(function(data) {
+                //         if (result.length == 1) {
+                //             var user = {
+                //                 sgid: result[0].SGID,
+                //                 firstname: result[0].FirstName,
+                //                 lastname: result[0].LastName,
+                //                 role: result[0].Role
+                //             };
+
+        //             // generate the jwt token with our user info
+        //             var token = jwt.sign(user, secretKey, { expiresInMinutes: 120 });
+
+        //             // the user object **is** included inside the token!
+
+        //             res.json({
+        //                 user: user, // this is only intended to get a reference in our extjs app
+        //                 token: token
+        //             });
+        //         } else {
+        //             res.status(401).send('User or password not valid');
+        //         }
+        //     }).catch(function(err) {
+        //         res.status(404).send('Unexpected error');
+        //     });
+
+        return connection.acquire(function(err, con) {
+            con.query('select * from user where SGID = ?', userName, function(err, result) {
+                // console.log(result);
+                con.release();
+                if (err) {
+                    console.log(err);
+                    res.status(404).send('Unexpected error');
+                } else {
+                    //if(result.length >1)A
+                    if (result.length == 1) {
+                        console.log('reach', result[0]);
+
+                        var user = {
+                            sgid: result[0].SGID,
+                            firstname: result[0].FirstName,
+                            lastname: result[0].LastName,
+                            role: result[0].Role
+                        };
+
+                        // generate the jwt token with our user info
+                        var token = jwt.sign(user, secretKey, { expiresInMinutes: 120 });
+
+                        // the user object **is** included inside the token!
+
+                        res.json({
+                            user: user, // this is only intended to get a reference in our extjs app
+                            token: token
+                        });
+                        // return result[0];
                     } else {
-                        //if(result.length >1)A
-                        if (result.length == 1) {
-                            console.log('reach', result[0]);
-
-                            var user = {
-                                sgid: result[0].SGID,
-                                firstname: result[0].FirstName,
-                                lastname: result[0].LastName,
-                                role: result[0].Role
-                            };
-
-                            // generate the jwt token with our user info
-                            var token = jwt.sign(user, secretKey, { expiresInMinutes: 120 });
-
-                            // the user object **is** included inside the token!
-
-                            res.json({
-                                user: user, // this is only intended to get a reference in our extjs app
-                                token: token
-                            });
-                            // return result[0];
-                        } else {
-                            res.status(401).send('User or password not valid');
-                        }
-
+                        res.status(401).send('User or password not valid');
                     }
-                })
-            });
+
+                }
+            })
+        });
     }
 
     this.get = function(res) {

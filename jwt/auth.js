@@ -27,38 +27,9 @@ module.exports = {
 
             var user = require('../model/user');
 
-            var users = user.verifyUser(res,username);
-            // console.log('test' + users);
-
-            // if (!(username === 'hello' && password === 'world')) {
-            //     console.log('User Name' + username);
-            //     res.status(401).send('User or password not valid');
-            //     //res.json(req.body);
-            // } else {
-
-            //     var user = {
-            //         name: 'Hello World',
-            //         email: 'hello@world.com',
-            //         id: 999
-            //     };
-
-            //     // generate the jwt token with our user info
-            //     var token = jwt.sign(user, secretKey, { expiresInMinutes: 120 });
-
-            //     // the user object **is** included inside the token!
-
-            //     res.json({
-            //         user: user, // this is only intended to get a reference in our extjs app
-            //         token: token
-            //     });
-            // }
+            var users = user.verifyUser(res, username);
         });
 
-        // validate.post('/',function(req,res){
-        //     var token = req.body.token;
-
-        // });
-        // app.use('/api', expressJwt({ secret: secretKey }));
         app.use('/authenticate', router);
         app.use(jwtCheck.unless('/authenticate'));
     }
