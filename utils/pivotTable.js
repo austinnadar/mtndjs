@@ -1,7 +1,9 @@
-var pivotTable = function() {
-    var task = [],
-        user = [],
-        week = [],
+var moment = require('moment');
+
+pivotTable = function() {
+    var task,
+        user,
+        week,
         addUser = function(usr) {
             user.push(usr);
             task.push({ Name: usr, week: null });
@@ -10,17 +12,14 @@ var pivotTable = function() {
             return user.indexOf(usr) == -1;
         },
         addWeek = function(weeks) {
-            if (hasWeek(weeks))
+            if (hasWeek(weeks)) {
                 week.push(weeks);
-
+            }
             task.forEach(function(item) {
                 if (!item.week) {
                     item.week = {};
                     item.week[weeks] = 0;
                 }
-                /*else{
-                                        item.week[weeks] = 0;
-                                    }*/
             })
         },
         hasWeek = function(weeks) {
@@ -33,22 +32,18 @@ var pivotTable = function() {
                 }
             });
         };
-
     return {
-        getTable: function(data) {
-            data.forEach(function(item) {
-
-                weeks = moment(item["weekstartson"], 'DD-MM-YYYY').format('YYYY-MM-DD');
-
-                (hasUser(item['user'])) ? addUser(item['user']): null;
-
-                addWeek(weeks);
-
-                updateData(item['user'], weeks, item['eff2']);
-
-            });
-
+        getTable: function(data, row, column) {
             var tsk = {};
+            task = [];
+            week = [];
+            user = [];
+            data.forEach(function(item) {
+                var weeks = moment(item.weekstartson, 'DD-MM-YYYY').format('YYYY-MM-DD');
+                (hasUser(item[row])) ? addUser(item[row]): null;
+                addWeek(weeks);
+                updateData(item[row], weeks, item[column]);
+            });
             tsk.task = task;
             tsk.week = week;
             tsk.user = user;

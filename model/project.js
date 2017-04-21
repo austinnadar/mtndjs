@@ -1,7 +1,8 @@
 var connection = require('../config/config'),
     moment = require('moment'),
     db = require('../utils/db');
-var Project = function() {
+
+Project = function() {
 
     return {
         get: function(res) {
@@ -18,25 +19,24 @@ var Project = function() {
             db.sendData(sql, null, res);
         },
         create: function(project, res) {
+            var sql = 'insert into project set ?';
 
-            // sql = 'insert into project set ?';
+            db.modifyData(sql, project, res);
 
-            // db.modifyData()
+            // connection.acquire(function(err, con) {
 
-            connection.acquire(function(err, con) {
-
-                // delete project.id;
-                // console.log(todo);
-                con.query('insert into project set ?', project, function(err, result) {
-                    con.release();
-                    if (err) {
-                        console.log(err);
-                        res.send({ status: false, message: 'Project creation failed' });
-                    } else {
-                        res.send({ status: true, message: 'Prject created successfully' });
-                    }
-                });
-            });
+            //     // delete project.id;
+            //     // console.log(todo);
+            //     con.query('insert into project set ?', project, function(err, result) {
+            //         con.release();
+            //         if (err) {
+            //             console.log(err);
+            //             res.send({ status: false, message: 'Project creation failed' });
+            //         } else {
+            //             res.send({ status: true, message: 'Prject created successfully' });
+            //         }
+            //     });
+            // });
         },
         update: function(project, res) {
             connection.acquire(function(err, con) {

@@ -4,7 +4,7 @@ var connection = require('../config/config'),
 var Task = function() {
 
     this.get = function(params, res) {
-        console.log(params);
+        // console.log(params);
         var sql, para;
         if (!params.date) {
             sql = 'select *,date_format(weekstartson,"%d-%m-%Y") as weekstartson from timecard where user = ? ';
@@ -15,31 +15,31 @@ var Task = function() {
             para = [params.name, params.date];
             console.log(para);
         }
-        db.sendData(sql, res);
 
-        // connection.acquire(function(err, con) {
-        //     con.query(sql,para, function(err, result) {
-        //         con.release();
-        //         res.send(result);
-        //     });
-        // });
+        db.sendData(sql, para, res);
+
     };
 
     this.create = function(task, res) {
-        connection.acquire(function(err, con) {
 
-            // delete project.id;
-            console.log(task);
-            con.query('insert into task set ?', task, function(err, result) {
-                con.release();
-                if (err) {
-                    console.log(err);
-                    res.send({ status: false, message: 'Task creation failed' });
-                } else {
-                    res.send({ status: true, message: 'Task created successfully' });
-                }
-            });
-        });
+        var sql = 'insert into task set ?';
+
+        db.modifyData(sql, task, res);
+
+        // connection.acquire(function(err, con) {
+
+        //     // delete project.id;
+        //     console.log(task);
+        //     con.query('insert into task set ?', task, function(err, result) {
+        //         con.release();
+        //         if (err) {
+        //             console.log(err);
+        //             res.send({ status: false, message: 'Task creation failed' });
+        //         } else {
+        //             res.send({ status: true, message: 'Task created successfully' });
+        //         }
+        //     });
+        // });
     };
 
     this.update = function(task, res) {

@@ -49,7 +49,7 @@ var db = function() {
         },
         getData: getData,
         modifyData: function(sql, data, res) {
-            modifyData.then(sql, data)
+            modifyData(sql, data)
                 .then(function(msg) {
                     res.send(msg);
                 })
