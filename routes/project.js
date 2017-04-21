@@ -2,7 +2,6 @@ var express = require('express'),
     router = express.Router(),
     project = require('../model/project');
 
-
 router.options('/api/project/', function(req, res) {
     project.get(res);
 });
