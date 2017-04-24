@@ -1,7 +1,7 @@
 var connection = require('../config/config'),
     db = require('../utils/db');
 
-var Task = function() {
+Task = function() {
 
     this.get = function(params, res) {
         // console.log(params);
@@ -12,7 +12,7 @@ var Task = function() {
         } else {
 
             sql = 'select *,date_format(weekstartson,"%d-%m-%Y") as weekstartson from timecard where user = ? and weekstartson = ?';
-            para = [params.name, params.date];
+            para = [params.name.toLowerCase(), params.date];
             console.log(para);
         }
 

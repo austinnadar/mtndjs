@@ -29,7 +29,7 @@ var db = function() {
                     if (err) {
                         reject('Failed to modify Data');
                     } else {
-                        resolve('Modified successfylly');
+                        resolve(result);
                     }
                 });
 
@@ -56,7 +56,8 @@ var db = function() {
                 .catch(function(err) {
                     res.send(err);
                 });
-        }
+        },
+        modifyQ: modifyData
     }
 }
 

@@ -3,7 +3,7 @@ var express = require('express'),
     upload = require('../utils/uploads'),
     timecard = require('../model/timecard');
 
-router.post('/api/timecardupload/', function(req, res) {
+router.put('/api/timecardupload/', function(req, res) {
     upload.load(req, res, function(err) {
         if (err) {
             res.json({ error_code: 1, err_desc: err });
@@ -21,11 +21,11 @@ router.post('/api/timecardupload/', function(req, res) {
                 .on('done', function() {
                     //res.json(jsons);
 
-                    timecard.loadtimecard(jsons);
+                    timecard.loadtimecard(jsons, res);
 
                 });
             // res.json(jsonData);
-            res.json({ error_code: 0, err_desc: null });
+
         }
     });
 });

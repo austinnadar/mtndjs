@@ -1,4 +1,3 @@
-var connection = require('../config/config');
 var multer = require('multer');
 
 var Upload = function() {
