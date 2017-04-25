@@ -1,7 +1,8 @@
 var express = require('express'),
     router = express.Router(),
     upload = require('../utils/uploads'),
-    timecard = require('../model/timecard');
+    timecard = require('../model/timecard'),
+    Converter = require('csvtojson').Converter;
 
 router.put('/api/timecardupload/', function(req, res) {
     upload.load(req, res, function(err) {
@@ -9,22 +10,18 @@ router.put('/api/timecardupload/', function(req, res) {
             res.json({ error_code: 1, err_desc: err });
             return;
         }
-        var Converter = require('csvtojson').Converter,
-            converter = new Converter({}),
-            jsons = [];
+        var _conv = new Converter({}),
+            _jsons = [];
 
         if (req.file) {
-            converter.fromFile(req.file.path)
+            _conv.fromFile(req.file.path)
                 .on('json', function(jsonObj) {
-                    jsons.push(jsonObj)
+                    _jsons.push(jsonObj)
                 })
                 .on('done', function() {
                     //res.json(jsons);
-
-                    timecard.loadtimecard(jsons, res);
-
+                    timecard.loadtimecard(_jsons, res);
                 });
-            // res.json(jsonData);
 
         }
     });
@@ -37,5 +34,10 @@ router.get('/api/timecardtask', function(req, res) {
 router.get('/api/timecardproject', function(req, res) {
     timecard.getProject(res);
 });
+
+router.post('/api/timcardleave', function(req, res) {
+    timecard.getLeave(req.body.week, res);
+});
+
 
 module.exports = router;

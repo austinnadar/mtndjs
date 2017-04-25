@@ -11,7 +11,7 @@ var db = function() {
                 con.query(sql, data, function(err, result) {
                     con.release();
                     if (err) {
-                        reject('Error in query');
+                        reject('Error in query' + err);
                     } else {
                         resolve(result);
                     }
