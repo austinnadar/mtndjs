@@ -27,12 +27,12 @@ router.put('/api/timecardupload/', function(req, res) {
     });
 });
 
-router.get('/api/timecardtask', function(req, res) {
-    timecard.getTask(res);
+router.post('/api/timecardtask', function(req, res) {
+    timecard.getTask(req.body.week, res);
 });
 
-router.get('/api/timecardproject', function(req, res) {
-    timecard.getProject(res);
+router.post('/api/timecardproject', function(req, res) {
+    timecard.getProject(req.body.week, res);
 });
 
 router.post('/api/timcardleave', function(req, res) {

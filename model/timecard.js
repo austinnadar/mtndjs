@@ -24,12 +24,13 @@ TimeCard = function() {
     });
 
     return {
-        getProject: function(res) {
+        getProject: function(week, res) {
             var sql = 'select table2.weekstartson,table2.Project_Name,sum(eff1)/(5*count(Project_Name))*100 as util' +
                 ' from (select table1.weekstartson,table1.user,project.Project_Name,table1.eff1 from' +
                 ' (select weekstartson,user,projecttask.prid, sum(efforts) as eff1 ' +
                 ' from timecard join projecttask on timecard.task_id = projecttask.task_id ' +
-                ' where  user in (select concat(lower(lastname),\' \', lower(firstname)) as users from user) ' +
+                ' where  user in (select concat(lower(lastname),\', \', lower(firstname)) as users from user) ' +
+                ' AND weekstartson IN (\'' + week.join('\',\'') + '\')' +
                 ' group by weekstartson, user, projecttask.prid ) ' +
                 ' as table1 join project on table1.prid = project.prid order by table1.weekstartson ) as table2 group by weekstartson,Project_Name ;'
 
@@ -46,11 +47,13 @@ TimeCard = function() {
                     Emitter.emit('ProjectPivot', d);
                 });
         },
-        getTask: function(res) {
+        getTask: function(week, res) {
 
-            var _sql = 'select weekstartson, user, sum(eff1) as eff2 from (select weekstartson,user, lower(user) as usr,task_id, (sum(efforts)/5)*100 as eff1' +
-                ' from timecard  group by weekstartson, user, task_id) as table1 where length(task_id) > 0 ' +
-                ' and  usr in (select concat(lower(lastname),\' \', lower(firstname)) as user from user)  group by weekstartson,user;';
+            var _sql = 'SELECT weekstartson, user, sum(eff1) as eff2 from (select weekstartson,user, lower(user) as usr,task_id, (sum(efforts)/5)*100 as eff1' +
+                ' FROM timecard  group by weekstartson, user, task_id) as table1 where length(task_id) > 0 ' +
+                ' AND table1.weekstartson IN (\'' + week.join('\',\'') + '\')' +
+                ' AND  usr in (select concat(lower(lastname),\', \', lower(firstname)) as user from user)  group by weekstartson,user' +
+                ' ORDER BY weekstartson,user;'
 
             db.getData(_sql)
                 .then(function(_response) {
@@ -69,8 +72,9 @@ TimeCard = function() {
             var sql = 'SELECT table1.weekstartson,table1.user,sum(table1.effort)as leaves  FROM (' +
                 ' SELECT weekstartson,category,user, sum(efforts) AS effort' +
                 ' FROM timecard WHERE task_id=\'\' AND category <> \'Meeting\'GROUP BY weekstartson, category, user) AS table1' +
-                ' where table1.weekstartson in (\'' + week.join('\',\'') + '\')' +
-                ' GROUP BY table1.weekstartson,table1.user';
+                ' WHERE table1.weekstartson in (\'' + week.join('\',\'') + '\')' +
+                ' AND  user in (SELECT CONCAT(LOWER(lastname),\', \', LOWER(firstname)) AS users FROM user) ' +
+                ' GROUP BY table1.weekstartson,table1.user ORDER BY table1.user';
 
             db.getData(sql, null)
                 .then(function(data) {
@@ -103,10 +107,10 @@ TimeCard = function() {
                 rec = {
                     "WeekStartsOn": tmpDate,
                     "User": item.user.toLowerCase(),
-                    "Category": item["category"],
-                    "Efforts": item["days"],
-                    "Task_Id": item["task"],
-                    "State": item["state"]
+                    "Category": item.category,
+                    "Efforts": item.days,
+                    "Task_Id": item.task,
+                    "State": item.state
                 };
 
                 promises.push(db.modifyQ('insert into timecard set ?', rec));

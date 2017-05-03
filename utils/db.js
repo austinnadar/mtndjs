@@ -51,6 +51,7 @@ var db = function() {
         modifyData: function(sql, data, res) {
             modifyData(sql, data)
                 .then(function(msg) {
+                    msg.status = true;
                     res.send(msg);
                 })
                 .catch(function(err) {
