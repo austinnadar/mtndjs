@@ -29,7 +29,7 @@ TimeCard = function() {
                 ' from (select table1.weekstartson,table1.user,project.Project_Name,table1.eff1 from' +
                 ' (select weekstartson,user,projecttask.prid, sum(efforts) as eff1 ' +
                 ' from timecard join projecttask on timecard.task_id = projecttask.task_id ' +
-                ' where  user in (select concat(lower(lastname),\', \', lower(firstname)) as users from user) ' +
+                ' where  user in (select concat(lower(firstname),\' \', lower(lastname)) as users from user) ' +
                 ' AND weekstartson IN (\'' + week.join('\',\'') + '\')' +
                 ' group by weekstartson, user, projecttask.prid ) ' +
                 ' as table1 join project on table1.prid = project.prid order by table1.weekstartson ) as table2 group by weekstartson,Project_Name ;'
@@ -52,7 +52,7 @@ TimeCard = function() {
             var _sql = 'SELECT weekstartson, user, sum(eff1) as eff2 from (select weekstartson,user, lower(user) as usr,task_id, (sum(efforts)/5)*100 as eff1' +
                 ' FROM timecard  group by weekstartson, user, task_id) as table1 where length(task_id) > 0 ' +
                 ' AND table1.weekstartson IN (\'' + week.join('\',\'') + '\')' +
-                ' AND  usr in (select concat(lower(lastname),\', \', lower(firstname)) as user from user)  group by weekstartson,user' +
+                ' AND  usr in (select concat(lower(firstname),\' \', lower(lastname)) as user from user)  group by weekstartson,user' +
                 ' ORDER BY weekstartson,user;'
 
             db.getData(_sql)
@@ -73,7 +73,7 @@ TimeCard = function() {
                 ' SELECT weekstartson,category,user, sum(efforts) AS effort' +
                 ' FROM timecard WHERE task_id=\'\' AND category <> \'Meeting\'GROUP BY weekstartson, category, user) AS table1' +
                 ' WHERE table1.weekstartson in (\'' + week.join('\',\'') + '\')' +
-                ' AND  user in (SELECT CONCAT(LOWER(lastname),\', \', LOWER(firstname)) AS users FROM user) ' +
+                ' AND  user in (SELECT CONCAT(LOWER(firstname),\' \', LOWER(lastname)) AS users FROM user) ' +
                 ' GROUP BY table1.weekstartson,table1.user ORDER BY table1.user';
 
             db.getData(sql, null)
